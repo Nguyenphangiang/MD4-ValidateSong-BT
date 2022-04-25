@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+<form th:action="@{/edit}" th:object="${song}" th:method="post">
+    <input type="hidden" th:field="*{id}" name="id">
+    <th:block th:if="${message}">
+        <h1 th:text="${message}">
+            <span style="color: green" th:value="${message1}"></span>
+        </h1>
+    </th:block>
+
+<h3><a th:href="@{/}">Back</a></h3>
+    <table>
+        <tr>
+            <td>Song Name: </td>
+            <td><input type="text" th:field="*{name}" th:value="*{name}"></td>
+            <td th:if="${#fields.hasErrors()}" th:errors="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Singer :</td>
+            <td><input type="text" th:field="*{singer}" th:value="*{name}"></td>
+            <td th:if="${#fields.hasErrors()}" th:errors="*{singer}"></td>
+        </tr>
+        <tr>
+            <td>Category :</td>
+            <td><input type="text" th:field="*{category}" th:value="*{category}"></td>
+            <td th:if="${#fields.hasErrors()}" th:errors="*{category}"></td>
+        </tr>
+    </table>
+<button type="submit">Edit</button>
+</form>
+</body>
+</html>
